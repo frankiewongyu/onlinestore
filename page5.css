@@ -1,0 +1,218 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    width: 1440px;
+    height: 2300px;
+}
+
+header {
+    background-color: #9DBC98;
+    height: 182px;
+    width: 100%;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 44.79%;
+    right: 44.86%;
+    top: 0.96%;
+    bottom: 94.96%;
+}
+
+main {
+    background-color: #F9EFDB;
+    position: absolute;
+    width: 1440px;
+    height: 2135px;
+    left: 0px;
+    top: 165px;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.left-column {
+    width: 589px;
+}
+
+.right-column {
+    width: 585px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 40px;
+    color: #000000;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    height: 50px;
+    background: #FFFFFF;
+    border: 2.5px solid #000000;
+    border-radius: 30px;
+    padding: 0 15px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+label {
+    display: block;
+    font-size: 20px;
+    line-height: 27px;
+    margin-bottom: 10px;
+}
+
+.email-info {
+    font-size: 15px;
+    line-height: 20px;
+    margin-top: 10px;
+}
+
+.name-fields, .location-fields, .contact-fields {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-fields > div, .location-fields > div, .contact-fields > div {
+    width: 48%;
+}
+
+.order-summary {
+    background: #FFFFFF;
+    border: 2.5px solid #000000;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.product {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.product img {
+    width: 212px;
+    height: 179px;
+    background: #D9D9D9;
+    margin-right: 20px;
+}
+
+.product-details h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 29px;
+    margin: 0;
+}
+
+.product-details p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 17px;
+    margin: 5px 0;
+}
+
+hr {
+    border: 1px solid #000000;
+    margin: 20px 0;
+}
+
+.order-totals p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 29px;
+}
+
+.payment-method h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 26px;
+}
+
+.important-notes {
+    margin-top: 40px;
+}
+
+.important-notes h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 17px;
+}
+
+.important-notes ul {
+    padding-left: 20px;
+}
+
+.important-notes li {
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.bg-custom-green {
+    background-color: #9DBC98;
+}
+
+.bg-custom-cream {
+    background-color: #F9EFDB;
+}
+
+.custom-input {
+    height: 50px;
+    border: 2.5px solid #000000;
+    border-radius: 30px;
+    padding: 0 15px;
+    font-size: 20px;
+}
+
+#payment-method {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#payment-method:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+#payment-method.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+}
+
+.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}

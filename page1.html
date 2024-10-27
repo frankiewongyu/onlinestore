@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Palette - Introduction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="page1.css">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="page1.html">
+                <img src="logo.png" alt="Paper Palette Logo">
+            </a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for Content">
+            <button class="search-button"></button>
+            <div id="search-results"></div>
+        </div>
+        <button class="cart-button"><img src="cart_logo.png" alt="cart Logo"></button>
+    </header>
+    
+    <nav class="bg-custom-beige py-2">
+        <div class="container">
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="page2.html">Book</a></li>
+                <li class="nav-item"><a class="nav-link" href="page3.html">Pens</a></li>
+                <li class="nav-item"><a class="nav-link" href="page4.html">Sticky Paper</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section class="banner position-relative">
+            <img src="page1_banner.png" alt="Paper Palette Banner" class="img-fluid w-100">
+            <div class="hero-indicators position-absolute bottom-0 start-50 translate-middle-x mb-3">
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+        </section>
+        
+        <section class="product-showcase bg-custom-cream py-5">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <img src="page1_book.png" alt="Book" class="img-fluid mb-3">
+                    </div>
+                    <div class="col-md-6">
+                        <p>The book boasts a smooth, matte cover, slightly textured pages for easy turning, and sturdy binding, creating an inviting and durable tactile reading experience.</p>
+                        <a href="#" class="btn btn-link more-info">More Info</a>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md-6 order-md-2">
+                        <img src="page1_pen.png" alt="Pen" class="img-fluid mb-3">
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <p>Pens provide a unique, soft sensation as the nib glides smoothly, delivering bold strokes that create a tactile experience, making writing enjoyable and engaging.</p>
+                        <a href="#" class="btn btn-link more-info">More Info</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="page1_stickypaper.png" alt="Sticky Paper" class="img-fluid mb-3">
+                    </div>
+                    <div class="col-md-6">
+                        <p>Sticky paper offers a variety of colors, sizes, and patterns, ideal for notes and creative projects. Its strong adhesive ensures secure application without leaving residue.</p>
+                        <a href="#" class="btn btn-link more-info">More Info</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-custom-cream py-3">
+        <div class="container text-center">
+            <p>Copyright © 2024 Paper Palette Inc. All rights reserved. Privacy Policy | Terms of Use | Sales Policy | Legal</p>
+        </div>
+    </footer>
+
+    <div class="cart-menu" style="display: none;">
+        <h2>Your Cart</h2>
+        <div class="cart-items"></div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total-amount">HK$ 0.00</span>
+        </div>
+        <div class="checkout-btn-container">
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

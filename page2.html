@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Palette - Books</title>
+    <link rel="stylesheet" href="shared_page1_2_3.css">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="page1.html">
+                <img src="logo.png" alt="Paper Palette Logo">
+            </a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for Content">
+            <button class="search-button"></button>
+            <div id="search-results"></div>
+        </div>
+        <button class="cart-button"><img src="cart_logo.png" alt="cart Logo"></button>
+    </header>
+    
+    <main>
+        <h1 class="page-title">BOOK</h1>
+        
+        <section class="product-grid">
+            <div class="product">
+                <img src="book1.png" alt="Floral patterned notebook">
+                <h2 class="price">HK$ 130</h2>
+                <p>Floral patterned notebooks, Blanca pages, in England</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Floral patterned notebook', 130, 'book1.png')">SUBMIT</button>
+            </div>
+            <div class="product">
+                <img src="book2.png" alt="Abstract floral notebook">
+                <h2 class="price">HK$ 90</h2>
+                <p>Patterned notebooks with modern, abstract floral designs.</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Abstract floral notebook', 90,'book2.png')">SUBMIT</button>
+            </div>
+            <div class="product">
+                <img src="book3.png" alt="Modern design notebook">
+                <h2 class="price">HK$ 90</h2>
+                <p>Modern design notebooks with sleek and minimalist aesthetics.</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Modern design notebook', 90,'book3.png')">SUBMIT</button>
+            </div>
+        </section>
+        
+        <section class="product-grid">
+            <div class="product">
+                <img src="book4.png" alt="Vintage style notebook">
+                <h2 class="price">HK$ 130</h2>
+                <p>Vintage style notebooks with classic designs and high-quality paper.</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Vintage style notebook', 130,'book4.png')">SUBMIT</button>
+            </div>
+            <div class="product">
+                <img src="book5.png" alt="Eco-friendly notebook">
+                <h2 class="price">HK$ 110</h2>
+                <p>Eco-friendly notebooks made from recycled materials with a natural look.</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Eco-friendly notebook', 110,'book5.png')">SUBMIT</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Copyright © 2024 Paper Palette Inc. All rights reserved. Privacy Policy | Terms of Use | Sales Policy | Legal</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

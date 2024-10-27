@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Palette - Sticky Paper</title>
+    <link rel="stylesheet" href="shared_page1_2_3.css">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="page1.html">
+            <img src="logo.png" alt="Paper Palette Logo">
+        </a>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search for Content">
+        <button class="search-button"></button>
+        <div id="search-results"></div>
+    </div>
+    <button class="cart-button"><img src="cart_logo.png" alt="cart Logo"></button>
+</header>
+    
+    <main>
+        <h1 class="page-title">Sticky Paper</h1>
+        
+        <section class="product-grid">
+            <div class="product">
+                <img src="sticky1.png" alt="Sticky Paper 1">
+                <h2 class="price">HK$ 130</h2>
+                <p>Floral patterned sticky notes, Blanca pages, in England</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Floral patterned sticky notes', 130,'sticky1.png')">SUBMIT</button>
+            </div>
+            <div class="product">
+                <img src="sticky2.png" alt="Sticky Paper 2">
+                <h2 class="price">HK$ 90</h2>
+                <p>Patterned sticky notes with modern, abstract floral designs.</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Patterned sticky notes', 90,'sticky2.png')">SUBMIT</button>
+            </div>
+            <div class="product">
+                <img src="sticky3.png" alt="Sticky Paper 3">
+                <h2 class="price">HK$ 90</h2>
+                <p>Patterned sticky notes with modern, abstract floral designs.</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Abstract floral sticky notes', 90,'sticky3.png')">SUBMIT</button>
+            </div>
+        </section>
+        
+        <section class="product-grid">
+            <div class="product">
+                <img src="sticky4.png" alt="Sticky Paper 4">
+                <h2 class="price">HK$ 130</h2>
+                <p>Floral patterned sticky notes, Blanca pages, in England</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Floral patterned sticky notes', 130,'sticky4.png')">SUBMIT</button>
+            </div>
+            <div class="product">
+                <img src="sticky5.png" alt="Sticky Paper 5">
+                <h2 class="price">HK$ 90</h2>
+                <p>Patterned sticky notes with modern, abstract floral designs.</p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button class="submit-btn" onclick="submitProduct(this, 'Modern abstract sticky notes', 90,'sticky5.png')">SUBMIT</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Copyright © 2024 Paper Palette Inc. All rights reserved. Privacy Policy | Terms of Use | Sales Policy | Legal</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9EFDB;
+}
+
+header {
+    background-color: #9DBC98;
+    height: 182px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+}
+
+.logo {
+    /* Add your logo styles here */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.search-bar input {
+    width: 383px;
+    height: 50px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    border: none;
+    padding: 0 15px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+
+.search-button {
+    width: 30px;
+    height: 30px;
+    background: url('magnifier.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    margin-left: -40px;
+    cursor: pointer;
+}
+
+.cart-button {
+    width: 55px;
+    height: 55px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.page-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 55px;
+    color: #9DBC98;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1227px;
+    margin: 0 auto 50px;
+    background-color: #FFFFFF;
+    border-radius: 38px;
+    padding: 40px;
+}
+
+.product {
+    width: 301px;
+    background-color: #E6F3E5;
+    box-shadow: 0px 9px 15px rgba(0, 0, 0, 0.45);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.product img {
+    width: 100%;
+    height: 179px;
+    object-fit: cover;
+}
+
+.price {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.product p {
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+.quantity-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #FFE7DF;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.quantity {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 35px;
+    color: #638889;
+    margin: 0 20px;
+    width: 50px;
+    text-align: center;
+    border: none;
+    background: none;
+    -moz-appearance: textfield;
+}
+
+.quantity::-webkit-outer-spin-button,
+.quantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 58px;
+    background-color: #96DBD8;
+    border: none;
+    border-radius: 50px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 35px;
+    color: #FFE7DF;
+    cursor: pointer;
+}
+
+/* ... (previous styles remain the same) */
+
+.search-bar2 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+#search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+#search-results ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#search-results li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#search-results li:hover {
+    background-color: #f0f0f0;
+}
+
+/* ... (rest of the styles remain the same) */
+
+footer {
+    background-color: #F9EFDB;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 16px;
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Palette - Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="page5.css">
+</head>
+<body>
+    <header class="bg-custom-green py-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <a href="page1.html">
+                        <img src="logo.png" alt="Paper Palette Logo" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="bg-custom-cream py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <section class="contact-details mb-5">
+                        <h2 class="mb-4">Contact Details</h2>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control custom-input" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address.
+                                </div>
+                                <p class="form-text email-info">We'll use this email address to confirm and update you on your order.</p>
+                            </div>
+                        </form>
+                    </section>
+                    
+                    <section class="delivery mb-5">
+                        <h2 class="mb-4">Delivery</h2>
+                        <form id="deliveryForm">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="first-name" class="form-label">First Name*</label>
+                                    <input type="text" class="form-control custom-input" id="first-name" name="first-name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="last-name" class="form-label">Last Name*</label>
+                                    <input type="text" class="form-control custom-input" id="last-name" name="last-name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address1" class="form-label">Address Line 1*</label>
+                                <input type="text" class="form-control custom-input" id="address1" name="address1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address2" class="form-label">Address Line 2</label>
+                                <input type="text" class="form-control custom-input" id="address2" name="address2">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="region" class="form-label">Region*</label>
+                                    <input type="text" class="form-control custom-input" id="region" name="region" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="area" class="form-label">Area*</label>
+                                    <input type="text" class="form-control custom-input" id="area" name="area" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="district" class="form-label">District*</label>
+                                    <input type="text" class="form-control custom-input" id="district" name="district" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contact" class="form-label">Contact Number*</label>
+                                    <input type="tel" class="form-control custom-input" id="contact" name="contact" required pattern="[0-9]+" oninput="validateContactNumber(this)">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid contact number (numbers only).
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <section class="important-notes">
+                        <h3 class="mb-3">Important Notes</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">• We will proceed with the purchase process after your order is completed.</li>
+                            <li class="mb-2">• Since the items are not yet purchased, they may be out of stock.</li>
+                            <li class="mb-2">• If some of the ordered items are out of stock, we will only purchase the available items. *Please note that cancellations are not permitted.</li>
+                        </ul>
+                    </section>
+                </div>
+                
+                <div class="col-lg-5">
+                    <section class="order-summary bg-white p-4 rounded">
+                        <h2 class="mb-4">Order Summary</h2>
+                        <div id="product-list">
+                            <!-- Products will be dynamically added here -->
+                        </div>
+                        <hr>
+                        <div class="order-totals">
+                            <p class="d-flex justify-content-between"><span>ITEMS:</span> <span id="total-items">0</span></p>
+                            <p class="d-flex justify-content-between"><span>DELIVERY:</span> <span>HK$XXX</span></p>
+                            <p class="d-flex justify-content-between fw-bold"><span>TOTAL:</span> <span id="total-price">HK$0.00</span></p>
+                        </div>
+                        <div class="payment-method mt-4">
+                            <h3 class="h5 mb-3">Payment Method (Optional)</h3>
+                            <select id="payment-method" class="form-select">
+                                <option value="">Select a payment method (optional)</option>
+                                <option value="fps">FPS</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="bank-transfer">Bank Transfer</option>
+                                <option value="credit-card">Credit Card</option>
+                            </select>
+                        </div>
+                        <button id="continueToShipping" class="btn btn-primary mt-3 w-100">Continue to Shipping</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="bg-custom-cream py-3">
+        <div class="container text-center">
+            <p class="mb-0">Copyright © 2024 Paper Palette Inc. All rights reserved. Privacy Policy | Terms of Use | Sales Policy | Legal</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+    function validateContactNumber(input) {
+        // Remove any non-digit characters
+        input.value = input.value.replace(/\D/g, '');
+        
+        if (input.validity.patternMismatch) {
+            input.setCustomValidity('Please enter a valid contact number (numbers only).');
+            input.classList.add('is-invalid');
+        } else {
+            input.setCustomValidity('');
+            input.classList.remove('is-invalid');
+        }
+    }
+
+    document.getElementById('continueToShipping').addEventListener('click', function(event) {
+        const contactInput = document.getElementById('contact');
+        if (contactInput.validity.patternMismatch) {
+            event.preventDefault();
+            contactInput.classList.add('is-invalid');
+        }
+    });
+    </script>
+</body>
+</html>
