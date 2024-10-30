@@ -1,5 +1,7 @@
 // Initialize an empty cart array
 let cart = [];
+let hasInitialized = false; // Add this flag to prevent multiple initializations
+let isDisplayingOrderSummary = false; // Add this flag
 
 function increaseQuantity(button) {
     let input = button.previousElementSibling;
@@ -22,6 +24,29 @@ function decreaseQuantity(button) {
 function submitProduct(button, productName, price, imageUrl) {
     const quantityInput = button.parentElement.querySelector('.quantity');
     const quantity = parseInt(quantityInput.value, 10);
+
+    // Create cart item object
+    const cartItem = {
+        name: productName,
+        price: price,
+        quantity: quantity,
+        image: imageUrl
+    };
+
+    // Get existing cart items from sessionStorage or initialize empty array
+    let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+    
+    // Check if product already exists in cart
+    const existingItemIndex = cartItems.findIndex(item => item.name === productName);
+    if (existingItemIndex > -1) {
+        cartItems[existingItemIndex].quantity += quantity;
+    } else {
+        cartItems.push(cartItem);
+    }
+
+    // Save updated cart to sessionStorage
+    sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+    cart = cartItems; // Update local cart array
 
     fetch('submit_product.php', {
         method: 'POST',
@@ -64,6 +89,18 @@ function updateLocalCart(productName, price, quantity, imageUrl) {
 }
 
 function deleteProduct(productName) {
+    // Get current items from sessionStorage
+    let storedItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+    
+    // Remove the item
+    storedItems = storedItems.filter(item => 
+        (item.name || item.product_name) !== productName
+    );
+    
+    // Update sessionStorage
+    sessionStorage.setItem('cartItems', JSON.stringify(storedItems));
+
+    // Update PHP backend
     fetch('delete_product.php', {
         method: 'POST',
         headers: {
@@ -75,8 +112,6 @@ function deleteProduct(productName) {
     .then(text => {
         if (text === 'success') {
             console.log('Product deleted successfully');
-            // Update the cart locally
-            cart = cart.filter(item => item.product_name !== productName);
             // Update the cart display
             updateCartDisplay();
         } else {
@@ -93,22 +128,25 @@ function updateCartDisplay() {
     const cartMenu = document.querySelector('.cart-menu');
     if (!cartMenu) return;
 
-    const cartItems = cartMenu.querySelector('.cart-items');
-    const cartTotal = cartMenu.querySelector('#cart-total-amount');
+    const cartItems = document.querySelector('.cart-items');
+    const cartTotal = document.querySelector('#cart-total-amount');
     const checkoutBtn = cartMenu.querySelector('.checkout-btn');
 
+    // Get items from sessionStorage
+    const storedItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+    
     cartItems.innerHTML = '';
     let total = 0;
 
-    console.log('Current cart:', cart); // Log the current state of the cart
+    console.log('Current stored items:', storedItems);
 
-    cart.forEach(item => {
+    storedItems.forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.className = 'cart-item';
         itemElement.innerHTML = `
-            <span>${item.product_name}</span>
+            <span>${item.name || item.product_name}</span>
             <span>HK$ ${item.price} x ${item.quantity}</span>
-            <button class="delete-btn" onclick="deleteProduct('${item.product_name}')">X</button>
+            <button class="delete-btn" onclick="deleteProduct('${item.name || item.product_name}')">X</button>
         `;
         cartItems.appendChild(itemElement);
 
@@ -116,12 +154,9 @@ function updateCartDisplay() {
     });
 
     cartTotal.textContent = `HK$ ${total.toFixed(2)}`;
-
-    console.log('Cart total:', total); // Log the cart total
-    console.log('Cart length:', cart.length); // Log the number of items in the cart
-
-    // Enable or disable the checkout button based on cart contents
-    if (cart.length > 0) {
+    
+    // Enable or disable checkout button based on stored items
+    if (storedItems.length > 0) {
         checkoutBtn.disabled = false;
     } else {
         checkoutBtn.disabled = true;
@@ -155,23 +190,15 @@ function showCartMenu() {
     const cartButtonRect = cartButton.getBoundingClientRect();
     cartMenu.style.top = (cartButtonRect.bottom + window.scrollY) + 'px';
     cartMenu.style.right = (window.innerWidth - cartButtonRect.right) + 'px';
-
-    console.log('Cart menu position:', cartMenu.style.top, cartMenu.style.right);
-
-    // Always make the cart menu visible when this function is called
     cartMenu.style.display = 'block';
-
-    console.log('Cart menu display:', cartMenu.style.display);
 
     // Add event listener to the checkout button
     const checkoutBtn = cartMenu.querySelector('.checkout-btn');
     checkoutBtn.addEventListener('click', function() {
-        console.log('Checkout button clicked');
-        console.log('Cart length:', cart.length);
-        if (cart.length > 0) {
+        const storedItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        if (storedItems.length > 0) {
             window.location.href = 'page5.html';
         } else {
-            console.log('Cart is empty');
             alert('Your cart is empty. Please add items before proceeding to checkout.');
         }
     });
@@ -185,38 +212,95 @@ function showCartMenu() {
     });
 }
 
-function loadCartData() {
-    fetch('get_cart.php')
-        .then(response => response.json())
-        .then(data => {
-            cart = data;
-            updateCartDisplay();
-        })
-        .catch(error => console.error('Error:', error));
-}
-
-// Function to periodically update the cart
-function startCartUpdater() {
-    setInterval(loadCartData, 5000); // Update every 5 seconds
-}
-
-// Load cart data when the page loads
+// Remove all existing DOMContentLoaded event listeners and combine them into one
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM fully loaded and parsed');
-    loadCartData();
-    startCartUpdater(); // Start the automatic updater
+    if (hasInitialized) return;
+    
+    console.log('Initializing page...');
+    
+    // Initialize cart from sessionStorage
+    cart = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+    
+    // Initialize search and cart functionality
+    initializeSearch();
+    
+    // Initialize cart button
     const cartButton = document.querySelector('.cart-button');
     if (cartButton) {
-        console.log('Cart button found');
         cartButton.addEventListener('click', function(event) {
-            console.log('Cart button clicked');
             event.stopPropagation();
             showCartMenu();
         });
-    } else {
-        console.error('Cart button not found');
     }
+    
+    // Only initialize order summary on page5.html
+    if (window.location.pathname.includes('page5.html')) {
+        console.log('Initializing order summary...');
+        displayOrderSummary();
+        addOrderSummaryStyles();
+    }
+    
+    hasInitialized = true;
 });
+
+// Move styles to a separate function
+function addOrderSummaryStyles() {
+    if (!document.getElementById('order-summary-styles')) {
+        const styles = `
+            .order-item {
+                margin-bottom: 2rem;
+            }
+            .item-image {
+                width: 200px;
+                height: 200px;
+                background-color: #ddd;
+                overflow: hidden;
+            }
+            .item-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .item-details {
+                flex: 1;
+            }
+        `;
+
+        const styleSheet = document.createElement("style");
+        styleSheet.id = 'order-summary-styles';
+        styleSheet.textContent = styles;
+        document.head.appendChild(styleSheet);
+    }
+}
+
+// Remove loadCartData and startCartUpdater functions since we're using sessionStorage
+
+// Modify displayOrderSummary to only use sessionStorage
+function displayOrderSummary() {
+    if (isDisplayingOrderSummary) return;
+    isDisplayingOrderSummary = true;
+
+    const productList = document.getElementById('product-list');
+    if (!productList) {
+        isDisplayingOrderSummary = false;
+        return;
+    }
+
+    console.log('Displaying order summary...');
+    
+    // Clear existing content first
+    productList.innerHTML = '';
+
+    // Get items from sessionStorage only
+    const cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+    console.log('Cart items:', cartItems);
+    
+    if (cartItems.length > 0) {
+        displayItems(cartItems);
+    }
+    
+    isDisplayingOrderSummary = false;
+}
 
 // Function to validate email
 function validateEmail(email) {
@@ -435,4 +519,127 @@ document.addEventListener('DOMContentLoaded', function() {
             searchResults.style.display = 'none';
         }
     });
+});
+
+// Separate function to handle the actual display of items
+function displayItems(items) {
+    const productList = document.getElementById('product-list');
+    if (!productList) return;
+
+    items.forEach(item => {
+        const productHtml = `
+            <div class="order-item mb-4">
+                <div class="d-flex align-items-start">
+                    <div class="item-image me-3">
+                        <img src="${item.image || item.image_url}" alt="${item.name || item.product_name}" 
+                             style="width: 200px; height: 200px; object-fit: cover; background-color: #ddd;">
+                    </div>
+                    <div class="item-details">
+                        <h2 style="font-size: 32px; margin-bottom: 10px;">${item.name || item.product_name}</h2>
+                        <p style="font-size: 20px; margin: 5px 0;">ITEMS: ${item.quantity}</p>
+                        <p style="font-size: 20px; margin: 5px 0;">HK$ ${item.price}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        productList.innerHTML += productHtml;
+    });
+
+    // Update totals
+    const totalItems = items.reduce((sum, item) => sum + parseInt(item.quantity), 0);
+    const totalPrice = items.reduce((sum, item) => sum + (parseFloat(item.price) * parseInt(item.quantity)), 0);
+    
+    document.getElementById('total-items').textContent = totalItems;
+    document.getElementById('total-price').textContent = `HK$ ${totalPrice}`;
+}
+
+// Update the initializeSearch function
+function initializeSearch() {
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-button');
+    const cartButton = document.querySelector('.cart-button');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', searchProducts);
+    }
+
+    if (searchButton) {
+        searchButton.addEventListener('click', searchProducts);
+    }
+
+    if (cartButton) {
+        cartButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            showCartMenu();
+        });
+    }
+}
+
+// Add this function to handle form submission and database storage
+function submitOrder(formData) {
+    fetch('submit_order.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.startsWith('success')) {
+            alert('Order submitted successfully!');
+            // Clear cart after successful submission
+            sessionStorage.removeItem('cartItems');
+            // Redirect to confirmation page
+            window.location.href = 'page6.html';
+        } else {
+            alert('Error submitting order: ' + data);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while submitting the order.');
+    });
+}
+
+// Update the form validation and submission in page5.html
+document.getElementById('continueToShipping').addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const contactForm = document.getElementById('contactForm');
+    const deliveryForm = document.getElementById('deliveryForm');
+    
+    // Add was-validated class to show validation feedback
+    contactForm.classList.add('was-validated');
+    deliveryForm.classList.add('was-validated');
+    
+    // Check if both forms are valid
+    if (contactForm.checkValidity() && deliveryForm.checkValidity()) {
+        // Get cart items
+        const cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        if (cartItems.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+
+        // Prepare form data
+        const formData = {
+            email: document.getElementById('email').value,
+            firstName: document.getElementById('first-name').value,
+            lastName: document.getElementById('last-name').value,
+            address1: document.getElementById('address1').value,
+            address2: document.getElementById('address2').value,
+            region: document.getElementById('region').value,
+            area: document.getElementById('area').value,
+            district: document.getElementById('district').value,
+            contact: document.getElementById('contact').value,
+            paymentMethod: document.getElementById('payment-method').value,
+            items: cartItems,
+            totalItems: document.getElementById('total-items').textContent,
+            totalPrice: document.getElementById('total-price').textContent.replace('HK$', '').trim()
+        };
+
+        // Submit the order
+        submitOrder(formData);
+    }
 });

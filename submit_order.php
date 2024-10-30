@@ -1,80 +1,79 @@
 <?php
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 0);
-
-header('Content-Type: text/plain');
-
-// Database connection details
+// Database connection
 $servername = "localhost";
 $username = "paper_palette";
 $password = "";
 $dbname = "paper_palette";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    echo "error:Connection failed: " . $conn->connect_error;
-    exit;
-}
-
-// Check if the request is to store the order
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Get POST data
     $data = json_decode(file_get_contents('php://input'), true);
     
-    if (isset($data['action']) && $data['action'] === 'submit_order') {
-        // Order details
-        $email = $conn->real_escape_string($data['email']);
-        $first_name = $conn->real_escape_string($data['first_name']);
-        $last_name = $conn->real_escape_string($data['last_name']);
-        $address1 = $conn->real_escape_string($data['address1']);
-        $address2 = $conn->real_escape_string($data['address2']);
-        $region = $conn->real_escape_string($data['region']);
-        $area = $conn->real_escape_string($data['area']);
-        $district = $conn->real_escape_string($data['district']);
-        $contact = $conn->real_escape_string($data['contact']);
-
-        // Order summary
-        $totalItems = $conn->real_escape_string($data['totalItems']);
-        $totalPrice = $conn->real_escape_string($data['totalPrice']);
-        
-        // Start transaction
-        $conn->begin_transaction();
-
-        try {
-            // Insert order details
-            $sql1 = "INSERT INTO order_details (email, first_name, last_name, address1, address2, region, area, district, contact) 
-                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt1 = $conn->prepare($sql1);
-            $stmt1->bind_param("sssssssss", $email, $first_name, $last_name, $address1, $address2, $region, $area, $district, $contact);
-            $stmt1->execute();
-
-            // Insert order summary
-            $sql2 = "INSERT INTO order_summary (total_items, total_price) VALUES (?, ?)";
-            $stmt2 = $conn->prepare($sql2);
-            $stmt2->bind_param("id", $totalItems, $totalPrice);
-            $stmt2->execute();
-
-            // Commit transaction
-            $conn->commit();
-
-            echo "success:Order submitted successfully";
-        } catch (Exception $e) {
-            // Rollback transaction on error
-            $conn->rollback();
-            echo "error:Error submitting order: " . $e->getMessage();
-        }
-
-        $stmt1->close();
-        $stmt2->close();
-    } else {
-        echo "error:Invalid action";
+    // Start transaction
+    $conn->beginTransaction();
+    
+    // Insert into orders table
+    $orderSql = "INSERT INTO orders (
+        email, first_name, last_name, address1, address2, 
+        region, area, district, contact, payment_method, 
+        total_items, total_price, order_date
+    ) VALUES (
+        :email, :firstName, :lastName, :address1, :address2,
+        :region, :area, :district, :contact, :paymentMethod,
+        :totalItems, :totalPrice, NOW()
+    )";
+    
+    $orderStmt = $conn->prepare($orderSql);
+    $orderStmt->execute([
+        ':email' => $data['email'],
+        ':firstName' => $data['firstName'],
+        ':lastName' => $data['lastName'],
+        ':address1' => $data['address1'],
+        ':address2' => $data['address2'],
+        ':region' => $data['region'],
+        ':area' => $data['area'],
+        ':district' => $data['district'],
+        ':contact' => $data['contact'],
+        ':paymentMethod' => $data['paymentMethod'],
+        ':totalItems' => $data['totalItems'],
+        ':totalPrice' => $data['totalPrice']
+    ]);
+    
+    $orderId = $conn->lastInsertId();
+    
+    // Insert order items
+    $itemSql = "INSERT INTO order_items (
+        order_id, product_name, quantity, price, image_url
+    ) VALUES (
+        :orderId, :productName, :quantity, :price, :imageUrl
+    )";
+    
+    $itemStmt = $conn->prepare($itemSql);
+    
+    foreach ($data['items'] as $item) {
+        $itemStmt->execute([
+            ':orderId' => $orderId,
+            ':productName' => $item['name'] ?? $item['product_name'],
+            ':quantity' => $item['quantity'],
+            ':price' => $item['price'],
+            ':imageUrl' => $item['image'] ?? $item['image_url']
+        ]);
     }
-} else {
-    echo "error:Invalid request method";
+    
+    // Commit transaction
+    $conn->commit();
+    
+    echo "success: Order submitted successfully!";
+} catch(PDOException $e) {
+    // Rollback transaction on error
+    if ($conn->inTransaction()) {
+        $conn->rollback();
+    }
+    echo "Error: " . $e->getMessage();
 }
 
-$conn->close();
+$conn = null;
 ?>

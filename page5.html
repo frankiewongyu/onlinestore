@@ -26,10 +26,16 @@
                 <div class="col-lg-7">
                     <section class="contact-details mb-5">
                         <h2 class="mb-4">Contact Details</h2>
-                        <form id="contactForm">
+                        <form id="contactForm" novalidate>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address *</label>
-                                <input type="email" class="form-control custom-input" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                <input type="email" 
+                                       class="form-control custom-input" 
+                                       id="email" 
+                                       name="email" 
+                                       required 
+                                       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                       title="Please enter a valid email address">
                                 <div class="invalid-feedback">
                                     Please enter a valid email address.
                                 </div>
@@ -40,45 +46,111 @@
                     
                     <section class="delivery mb-5">
                         <h2 class="mb-4">Delivery</h2>
-                        <form id="deliveryForm">
+                        <form id="deliveryForm" novalidate>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="first-name" class="form-label">First Name*</label>
-                                    <input type="text" class="form-control custom-input" id="first-name" name="first-name" required>
+                                    <label for="first-name" class="form-label">First Name *</label>
+                                    <input type="text" 
+                                           class="form-control custom-input" 
+                                           id="first-name" 
+                                           name="first-name" 
+                                           required 
+                                           minlength="2"
+                                           pattern="[A-Za-z\s]+"
+                                           title="Please enter a valid first name (letters only)">
+                                    <div class="invalid-feedback">
+                                        Please enter your first name (letters only).
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="last-name" class="form-label">Last Name*</label>
-                                    <input type="text" class="form-control custom-input" id="last-name" name="last-name" required>
+                                    <label for="last-name" class="form-label">Last Name *</label>
+                                    <input type="text" 
+                                           class="form-control custom-input" 
+                                           id="last-name" 
+                                           name="last-name" 
+                                           required 
+                                           minlength="2"
+                                           pattern="[A-Za-z\s]+"
+                                           title="Please enter a valid last name (letters only)">
+                                    <div class="invalid-feedback">
+                                        Please enter your last name (letters only).
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="address1" class="form-label">Address Line 1*</label>
-                                <input type="text" class="form-control custom-input" id="address1" name="address1" required>
+                                <label for="address1" class="form-label">Address Line 1 *</label>
+                                <input type="text" 
+                                       class="form-control custom-input" 
+                                       id="address1" 
+                                       name="address1" 
+                                       required 
+                                       minlength="5"
+                                       title="Please enter your street address">
+                                <div class="invalid-feedback">
+                                    Please enter your street address (minimum 5 characters).
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address2" class="form-label">Address Line 2</label>
-                                <input type="text" class="form-control custom-input" id="address2" name="address2">
+                                <input type="text" 
+                                       class="form-control custom-input" 
+                                       id="address2" 
+                                       name="address2">
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="region" class="form-label">Region*</label>
-                                    <input type="text" class="form-control custom-input" id="region" name="region" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="area" class="form-label">Area*</label>
-                                    <input type="text" class="form-control custom-input" id="area" name="area" required>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="district" class="form-label">District*</label>
-                                    <input type="text" class="form-control custom-input" id="district" name="district" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="contact" class="form-label">Contact Number*</label>
-                                    <input type="tel" class="form-control custom-input" id="contact" name="contact" required pattern="[0-9]+" oninput="validateContactNumber(this)">
+                                    <label for="region" class="form-label">Region *</label>
+                                    <input type="text" 
+                                           class="form-control custom-input" 
+                                           id="region" 
+                                           name="region" 
+                                           required
+                                           pattern="[A-Za-z\s]+"
+                                           title="Please enter a valid region name">
                                     <div class="invalid-feedback">
-                                        Please enter a valid contact number (numbers only).
+                                        Please enter your region.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="area" class="form-label">Area *</label>
+                                    <input type="text" 
+                                           class="form-control custom-input" 
+                                           id="area" 
+                                           name="area" 
+                                           required
+                                           pattern="[A-Za-z\s]+"
+                                           title="Please enter a valid area name">
+                                    <div class="invalid-feedback">
+                                        Please enter your area.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="district" class="form-label">District *</label>
+                                    <input type="text" 
+                                           class="form-control custom-input" 
+                                           id="district" 
+                                           name="district" 
+                                           required
+                                           pattern="[A-Za-z\s]+"
+                                           title="Please enter a valid district name">
+                                    <div class="invalid-feedback">
+                                        Please enter your district.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contact" class="form-label">Contact Number *</label>
+                                    <input type="tel" 
+                                           class="form-control custom-input" 
+                                           id="contact" 
+                                           name="contact" 
+                                           required 
+                                           pattern="[0-9]{8}"
+                                           title="Please enter a valid 8-digit phone number"
+                                           maxlength="8">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid 8-digit phone number.
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +170,7 @@
                     <section class="order-summary bg-white p-4 rounded">
                         <h2 class="mb-4">Order Summary</h2>
                         <div id="product-list">
-                            <!-- Products will be dynamically added here -->
+                            <!-- Products will be dynamically added here by JavaScript -->
                         </div>
                         <hr>
                         <div class="order-totals">
@@ -132,24 +204,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script>
-    function validateContactNumber(input) {
-        // Remove any non-digit characters
-        input.value = input.value.replace(/\D/g, '');
-        
-        if (input.validity.patternMismatch) {
-            input.setCustomValidity('Please enter a valid contact number (numbers only).');
-            input.classList.add('is-invalid');
-        } else {
-            input.setCustomValidity('');
-            input.classList.remove('is-invalid');
-        }
-    }
-
+    // Add form validation on submit
     document.getElementById('continueToShipping').addEventListener('click', function(event) {
-        const contactInput = document.getElementById('contact');
-        if (contactInput.validity.patternMismatch) {
-            event.preventDefault();
-            contactInput.classList.add('is-invalid');
+        event.preventDefault();
+        
+        const contactForm = document.getElementById('contactForm');
+        const deliveryForm = document.getElementById('deliveryForm');
+        
+        // Add was-validated class to show validation feedback
+        contactForm.classList.add('was-validated');
+        deliveryForm.classList.add('was-validated');
+        
+        // Check if both forms are valid
+        if (contactForm.checkValidity() && deliveryForm.checkValidity()) {
+            // Forms are valid, proceed with submission
+            alert('Order submitted successfully!');
+            // Add your form submission logic here
         }
     });
     </script>
