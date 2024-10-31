@@ -1,4 +1,4 @@
- /* Contents from shared.css */
+/* Contents from shared.css */
 .search-bar {
     position: relative;
 }
@@ -81,7 +81,7 @@ header {
 .search-button {
     width: 30px;
     height: 30px;
-    background: url('magnifier.png') no-repeat center center;
+    background: url('../image/magnifier.png') no-repeat center center;
     background-size: contain;
     border: none;
     margin-left: -40px;
@@ -345,4 +345,40 @@ footer {
 
 footer p {
     font-size: 16px;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hero-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+}
+
+.indicator {
+    width: 15px;
+    height: 14px;
+    background: #D9D9D9;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.indicator.active {
+    background: #9DBC98;
 }

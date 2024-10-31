@@ -4,63 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paper Palette - Sticky Paper</title>
-    <link rel="stylesheet" href="combined.css">
-    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="../css/combined.css">
+    <link rel="stylesheet" href="../css/checkout.css">
 </head>
 <body>
-<header>
-    <div class="logo">
-        <a href="page1.html">
-            <img src="logo.png" alt="Paper Palette Logo">
-        </a>
-    </div>
-    <div class="search-bar">
-        <input type="text" placeholder="Search for Content">
-        <button class="search-button"></button>
-        <div id="search-results"></div>
-    </div>
-    <button class="cart-button"><img src="cart_logo.png" alt="cart Logo"></button>
-</header>
+    <header>
+        <div class="logo">
+            <a href="../html/page1.html">
+                <img src="../image/logo.png" alt="Paper Palette Logo">
+            </a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for Content">
+            <button type="button" class="search-button"></button>
+            <div id="search-results"></div>
+        </div>
+        <button type="button" class="cart-button">
+            <img src="../image/cart_logo.png" alt="Cart">
+        </button>
+    </header>
     
     <main>
-        <nav class="navbar"><h1 class="page-title">Sticky Paper</h1>
+        <nav>
+            <h1 class="page-title">Sticky Paper</h1>
             <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                <li><a class="dropdown-item" href="page2.html">Books</a></li>
-                <li><a class="dropdown-item" href="page3.html">Pens</a></li>
-                <li><a class="dropdown-item" href="page4.html">Sticky Paper</a></li>
+                <li><a class="dropdown-item" href="../html/page2.html">Books</a></li>
+                <li><a class="dropdown-item" href="../html/page3.html">Pens</a></li>
+                <li><a class="dropdown-item" href="../html/page4.html">Sticky Paper</a></li>
             </ul>
         </nav>
         <section class="product-grid">
             <div class="product">
-                <img src="sticky1.png" alt="Sticky Paper 1">
+                <img src="../image/sticky1.png" alt="Sticky Paper 1">
                 <h2 class="price"><br> Floral patterned sticky notes <br><br>HK$ 50</h2>
                 <p>Floral sticky note,featuring pink flowers and green leaves in the corners.</p>
                 <div class="quantity-selector">
-                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <button class="quantity-btn minus" onclick="javascript:decreaseQuantity(this)">-</button>
                     <input type="number" class="quantity" value="1" min="1" max="99">
-                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                    <button class="quantity-btn plus" onclick="javascript:increaseQuantity(this)">+</button>
                 </div>
                 <button class="submit-btn" onclick="submitProduct(this, 'Floral patterned sticky notes', 50,'sticky1.png')">SUBMIT</button>
             </div>
             <div class="product">
-                <img src="sticky2.png" alt="Sticky Paper 2">
+                <img src="../image/sticky2.png" alt="Sticky Paper 2">
                 <h2 class="price"><br> Abstract floral sticky notes <br><br>HK$ 60</h2>
                 <p>Patterned sticky notes with modern, abstract floral designs.</p>
                 <div class="quantity-selector">
-                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <button class="quantity-btn minus" onclick="javascript:decreaseQuantity(this)">-</button>
                     <input type="number" class="quantity" value="1" min="1" max="99">
-                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                    <button class="quantity-btn plus" onclick="javascript:increaseQuantity(this)">+</button>
                 </div>
                 <button class="submit-btn" onclick="submitProduct(this, 'Abstract floral sticky notes', 60,'sticky2.png')">SUBMIT</button>
             </div>
             <div class="product">
-                <img src="sticky3.png" alt="Sticky Paper 3">
+                <img src="../image/sticky3.png" alt="Sticky Paper 3">
                 <h2 class="price"><br> Multiple pattern sticky notes <br><br>HK$ 70</h2>
                 <p>Patterned sticky notes with different designs, including solid yellow and various floral patterns in pink, green, and white.</p>
                 <div class="quantity-selector">
-                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <button class="quantity-btn minus" onclick="javascript:decreaseQuantity(this)">-</button>
                     <input type="number" class="quantity" value="1" min="1" max="99">
-                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                    <button class="quantity-btn plus" onclick="javascript:increaseQuantity(this)">+</button>
                 </div>
                 <button class="submit-btn" onclick="submitProduct(this, 'Multiple pattern sticky notes', 70,'sticky3.png')">SUBMIT</button>
             </div>
@@ -68,24 +71,24 @@
         
         <section class="product-grid">
             <div class="product">
-                <img src="sticky4.png" alt="Sticky Paper 4">
+                <img src="../image/sticky4.png" alt="Sticky Paper 4">
                 <h2 class="price"><br> Pink flowers sticky notes <br><br>HK$ 80</h2>
                 <p>Sticky notes with a floral pattern featuring pink flowers, green leaves, and small yellow accents.</p>
                 <div class="quantity-selector">
                     <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
                     <input type="number" class="quantity" value="1" min="1" max="99">
-                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                    <button class="quantity-btn plus" onclick="javascript:increaseQuantity(this)">+</button>
                 </div>
                 <button class="submit-btn" onclick="submitProduct(this, 'Pink flowers sticky notes', 80,'sticky4.png')">SUBMIT</button>
             </div>
             <div class="product">
-                <img src="sticky5.png" alt="Sticky Paper 5">
+                <img src="../image/sticky5.png" alt="Sticky Paper 5">
                 <h2 class="price"><br> Large & small flowers sticky notes <br><br>HK$ 90</h2>
                 <p>Sticky notes with the design features large and small flowers in shades of pink and red, with green stems and leaves.</p>
                 <div class="quantity-selector">
-                    <button class="quantity-btn minus" onclick="decreaseQuantity(this)">-</button>
+                    <button class="quantity-btn minus" onclick="javascript:decreaseQuantity(this)">-</button>
                     <input type="number" class="quantity" value="1" min="1" max="99">
-                    <button class="quantity-btn plus" onclick="increaseQuantity(this)">+</button>
+                    <button class="quantity-btn plus" onclick="javascript:increaseQuantity(this)">+</button>
                 </div>
                 <button class="submit-btn" onclick="submitProduct(this, 'Large & small flowers sticky notes', 90,'sticky5.png')">SUBMIT</button>
             </div>
@@ -95,6 +98,6 @@
     <footer>
         <p>Copyright © 2024 Paper Palette Inc. All rights reserved. Privacy Policy | Terms of Use | Sales Policy | Legal</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>

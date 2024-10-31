@@ -40,7 +40,7 @@ header {
 .search-button {
     width: 30px;
     height: 30px;
-    background: url('magnifier.png') no-repeat center center;
+    background: url('../image/magnifier.png') no-repeat center center;
     background-size: contain;
     border: none;
     margin-left: -40px;

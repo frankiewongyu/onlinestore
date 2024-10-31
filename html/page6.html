@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Paper Palette</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/page6.css">
+</head>
+<body>
+    <main class="container">
+        <div class="thank-you-container">
+            <h1>Thank You</h1>
+            <p>Your order has been successfully placed.</p>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Async function to handle order submission
+        async function handleOrderSubmission() {
+            try {
+                const orderResponse = await fetch('../php/submit_order.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({action: 'store_order'})
+                });
+                
+                if (!orderResponse.ok) throw new Error('Order submission failed');
+                
+                const sessionResponse = await fetch('../php/close_session.php');
+                if (!sessionResponse.ok) throw new Error('Session closure failed');
+                
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Execute the order submission
+        handleOrderSubmission();
+    </script>
+</body>
+</html>
