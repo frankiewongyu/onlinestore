@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paper Palette - Your one-stop shop for books, pens, and stationery supplies">
+    <meta name="theme-color" content="#ffffff">
     <title>Paper Palette - Introduction</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="page1.css">
-    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="combined.css">
     <link rel="stylesheet" href="checkout.css">
 </head>
 <body>
@@ -36,11 +39,11 @@
     
     <main>
         <section class="banner position-relative">
-            <img src="page1_banner.png" alt="Paper Palette Banner" class="img-fluid w-100">
+            <img src="page1_banner.png" alt="Paper Palette Banner" class="img-fluid w-100" loading="eager">
             <div class="hero-indicators position-absolute bottom-0 start-50 translate-middle-x mb-3">
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
+                <span class="indicator active" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
             </div>
         </section>
         
@@ -48,7 +51,7 @@
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-md-6">
-                        <img src="page1_book.png" alt="Book" class="img-fluid mb-3">
+                        <img src="page1_book.png" alt="Book showcase" class="img-fluid mb-3" loading="lazy">
                     </div>
                     <div class="col-md-6">
                         <p>The book boasts a smooth, matte cover, slightly textured pages for easy turning, and sturdy binding, creating an inviting and durable tactile reading experience.</p>
@@ -57,7 +60,7 @@
                 </div>
                 <div class="row mb-5">
                     <div class="col-md-6 order-md-2">
-                        <img src="page1_pen.png" alt="Pen" class="img-fluid mb-3">
+                        <img src="page1_pen.png" alt="Pen showcase" class="img-fluid mb-3" loading="lazy">
                     </div>
                     <div class="col-md-6 order-md-1">
                         <p>Pens provide a unique, soft sensation as the nib glides smoothly, delivering bold strokes that create a tactile experience, making writing enjoyable and engaging.</p>
@@ -66,7 +69,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="page1_stickypaper.png" alt="Sticky Paper" class="img-fluid mb-3">
+                        <img src="page1_stickypaper.png" alt="Sticky Paper showcase" class="img-fluid mb-3" loading="lazy">
                     </div>
                     <div class="col-md-6">
                         <p>Sticky paper offers a variety of colors, sizes, and patterns, ideal for notes and creative projects. Its strong adhesive ensures secure application without leaving residue.</p>

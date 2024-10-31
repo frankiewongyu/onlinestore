@@ -175,7 +175,7 @@
                         <hr>
                         <div class="order-totals">
                             <p class="d-flex justify-content-between"><span>ITEMS:</span> <span id="total-items">0</span></p>
-                            <p class="d-flex justify-content-between"><span>DELIVERY:</span> <span>HK$XXX</span></p>
+                            <p class="d-flex justify-content-between"><span>DELIVERY:</span> <span>HK$50</span></p>
                             <p class="d-flex justify-content-between fw-bold"><span>TOTAL:</span> <span id="total-price">HK$0.00</span></p>
                         </div>
                         <div class="payment-method mt-4">
@@ -203,25 +203,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-    <script>
-    // Add form validation on submit
-    document.getElementById('continueToShipping').addEventListener('click', function(event) {
-        event.preventDefault();
-        
-        const contactForm = document.getElementById('contactForm');
-        const deliveryForm = document.getElementById('deliveryForm');
-        
-        // Add was-validated class to show validation feedback
-        contactForm.classList.add('was-validated');
-        deliveryForm.classList.add('was-validated');
-        
-        // Check if both forms are valid
-        if (contactForm.checkValidity() && deliveryForm.checkValidity()) {
-            // Forms are valid, proceed with submission
-            alert('Order submitted successfully!');
-            // Add your form submission logic here
-        }
-    });
-    </script>
 </body>
 </html>
